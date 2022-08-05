@@ -1,0 +1,7 @@
+DB-HOST = Your Host
+DBUSERNAME= postgres
+DBPASSWORD= Your Password
+DBPORTS= 5432
+DBDATABASE= Your Database
+PORT = 3000
+NODEENV = development

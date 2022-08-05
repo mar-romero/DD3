@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "92483c0f-3d09-4448-840f-46326ee06652",
+		"name": "DD3",
+		"description": "Se trata de un juego en el cual tenés que ingresar un usuario y una palabra de 5 letras, dicho usuario se guardara en la base de datos para comprobar cuando comenzaste a jugar y también se guardara cuantos intentos tuviste con dicha palabra, podés adivinar las palabras en 5 min o en 5 intentos, pasado los 5 min o los 5 intentos y deseas volver a jugar, en este caso será con una palabra nueva. Por otro lado, en la base de datos también se guardará la palabra que deseas adivinar.  \nTodos los usuarios que se registren jugaran con una palabra diferente, excepto que el mismo usuario juegue dentro de los 5 min o de los 5 intentos.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20616504"
+	},
+	"item": [
+		{
+			"name": "PlayGame",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"marcelo\",\r\n    \"word\":\"vahas\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user"
+					]
+				},
+				"description": "Este end point se encarga de jugar.\n\nSe tiene que enviar como parámetros un nombre de usuario y la palabra que quieras y te devuelve un JSON como el siguiente.\n\n\\[ { \"letter\": \"v\", \"value\": 3 },\n\n{ \"letter\": \"a\", \"value\": 2 },\n\n{ \"letter\": \"h\", \"value\": 3 },\n\n{ \"letter\": \"a\", \"value\": 2 },\n\n{ \"letter\": \"s\", \"value\": 1 }\\]\n\nEn el cual te indica la palabra deletreada que ingreso el usuario con un valor determinado, dicho valor se rigen en los siguientes estándares:\n\na. Si la letra ingresada coincide con la ubicación de la letra a adivinar el valor es 1  \nb. Si la letra ingresada está en la palabra pero no en el mismo lugar, regresará  \nla letra con un 2  \nc. Si la letra ingresada no se encuentra en la palabra, regresará la letra con un  \n3 y sumará 1 intento al usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "TopTenUser",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"marcelo12\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/getTopUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"getTopUsers"
+					]
+				},
+				"description": "Obtiene el top ten de los usuarios con respecto a cuantas victorias tiene y devuelve el siguiente JSON.\n\n\\[ { \"username\": \"marcelo12\", \"totalWins\": \"3\" },\n\n{ \"username\": \"marcelo\", \"totalWins\": \"1\" }\\]"
+			},
+			"response": []
+		},
+		{
+			"name": "TopWord",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"marcelo12\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/getTopWords?count=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"getTopWords"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "1"
+						}
+					]
+				},
+				"description": "En este endpoint podes consultar las palabras más adivinadas, por defecto serán las 10 palabras pero tenés la posibilidad de de mandar un params y obtener la cantidad deseada.\n\nEjemplos:\n\n[http://localhost:3000/user/getTopWords?count=1](http://localhost:3000/user/getTopWords?count=1)\n\nDe esta forma solamente una sola palabra\n\n\\[ { \"username\": \"aguas\", \"total\": \"2\" }\\]\n\nSin pasarle un params obtenés las 10 palabras mas adivinadas.\n\n[http://localhost:3000/user/getTopWords](http://localhost:3000/user/getTopWords?count=1)\n\nStartFragment\n\n\\[ { \"username\": \"adios\", \"total4\" },\n\n\\[ { \"username\": \"total\", \"total\": \"3\" },\n\n\\[ { \"username\": \"aguas\", \"total\": \"2\" },\n\n{ \"username\": \"vahas\", \"total\": \"1\" },\n\n{ \"username\": \"guabá\", \"total\": \"1\" },\n\n{ \"username\": \"quena\", \"total\": \"1\" },\n\n{ \"username\": \"nimba\", \"total\": \"1\" },\n\n{ \"username\": \"acusó\", \"total\": \"1\" },\n\n{ \"username\": \"diñar\", \"total\": \"1\" },\n\n{ \"username\": \"velás\", \"total\": \"1\" }\\]\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "StatisticsUsers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"marcelo12\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/marcelo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"marcelo"
+					]
+				},
+				"description": "En este endpoint funciona mandando como parámetro el nombre del usuario y este devolverá un JSON con el usuario, cuantas victorias tuvo y cuantas partidas jugo. Ejemplo;\n\n{ \"username\": \"marcelo\",\n\n\"totalMatches\": \"3\",\n\n\"totalWins\": \"1\"}"
+			},
+			"response": []
+		}
+	]
+}
