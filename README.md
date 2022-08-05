@@ -15,7 +15,7 @@ TypeORM
 Postgres
 
 # Creación de la base de datos
-Copie .envexample a .env y complete con las credenciales de la base de datos.
+Copie envexample a .env y complete con las credenciales de la base de datos.
 
 # Instalación de dependencias
 
